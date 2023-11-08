@@ -3,8 +3,22 @@
 #include <string.h>
 #include <stdbool.h>
 #include <time.h>
+/*
+Specifications:
+Pre-Conditions:
+-char* spells [] is the Array of Strings containing a list of words. The list should not be empty.
+-int SpellsSize is the number of words in the list (size of the array)
+-char*word is any word given by the client.
 
-// FUNCTION A
+Expected Output: 
+-Returns True if the char*word provided by the user is found in the char*spells [] list.
+-Returns false otherwise. (If the given word is not found in the list).
+
+Test Cases:
+
+ 
+ */
+// Function to check if a word is in the list of spells
 bool spellProvided(char *spells[], int spellsSize, char word[]) {
     for (int i = 0; i < spellsSize; i++) {
         int comp = strcmp(word, spells[i]);
@@ -14,7 +28,24 @@ bool spellProvided(char *spells[], int spellsSize, char word[]) {
     return false;
 }
 
-// FUNCTION B
+/*
+Specifications:
+Pre-Conditions:
+-char* usedWords [] is the Array of Strings containing a list of words used by the players. The Array of Strings should not be empty.
+-int usedSize is the number of words in the list (size of the array)
+-char*word is any word given by the client.
+
+Expected Output: 
+-Returns True if the char*word provided by the user was used another time in the game.
+-Returns false otherwise. (If the given word was not used before in the game).
+
+Test Cases:
+
+
+
+*/
+
+// Function to check if a word has already been used
 bool spellAlreadyUsed(char *spells[], int spellsSize, char usedWords[]) {
     for (int i = 0; i < spellsSize; i++) {
         int comp = strcmp(usedWords, spells[i]);
@@ -23,16 +54,42 @@ bool spellAlreadyUsed(char *spells[], int spellsSize, char usedWords[]) {
     }
     return false;
 }
+/*
+Specifications:
+Pre-Conditions:
+- Given any Two strings (char *previousWord, char *currentWord).
+- The order of parameters matters pass the previousWord with the last character being common with the first Character of currentWord.
 
-// FUNCTION C
+Expected Output:
+-Returns true if the last character of the previous word matches the first character of the current word.
+-Returns false otherwise.
+
+
+Test Cases:
+
+*/
+
+//Function to check if the last character of the previous word matches the first character of the current word
 bool charMatching(char previousWord[], char currentWord[]) {
     size_t len = strlen(previousWord);
     char lastChar = previousWord[len - 1];
     char firstChar = currentWord[0];
     return lastChar == firstChar;
 }
+/*
+Specifications:
+Pre-Condition:
+- Take a string char*currentWord 
+-An array of integers that counts the number of words starting with the alphabetical letters in a given list. (int Tally[])
 
-// FUNCTION D
+Expected Output:
+-Returns true if the list contains available starting letters mataching the lastLetter of the String char*currentWord.
+-Returns false otherwise.
+
+Test Cases:
+
+*/
+// Function to check if a spell has run out of uses
 bool runOut(char currentWord[], int Tally[]) {
     size_t len = strlen(currentWord);
     char lastLetter = currentWord[len - 1];
@@ -115,7 +172,7 @@ int main() {
     printf("\n");
     // Step 5
     int numberOfPlays = 78;
-    char *usedWords[numberOfPlays];
+    char *usedWords[78];
     // Allocate memory for each char pointer
     for (int i = 0; i < numberOfPlays; i++) {
         usedWords[i] = (char *)malloc(78 * sizeof(char));
