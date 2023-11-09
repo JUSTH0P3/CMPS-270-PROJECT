@@ -15,7 +15,12 @@ Expected Output:
 -Returns false otherwise. (If the given word is not found in the list).
 
 Test Cases:
-
+-Try if the word exists in the spells array (1st, last or in the middle)
+-Try word not in the list 
+-Try empty list 
+-Try empty word
+-Try case insensitivity (between word and words in the list)
+-Try multiple occurences of the word in the list
  
  */
 // Function to check if a word is in the list of spells
@@ -40,8 +45,10 @@ Expected Output:
 -Returns false otherwise. (If the given word was not used before in the game).
 
 Test Cases:
-
-
+-Try an already used word 
+-Try a non used word
+-Try an empty list (word or input spells)
+-Try case insensitivity (between word and list)
 
 */
 
@@ -66,14 +73,18 @@ Expected Output:
 
 
 Test Cases:
+-Try matching last char of prev word and first char of current word
+-Try non matching last char of prev word and first char of current word
+-Try empty current word or empty previous word
+-Try case insensitivity
 
 */
 
 //Function to check if the last character of the previous word matches the first character of the current word
 bool charMatching(char previousWord[], char currentWord[]) {
     size_t len = strlen(previousWord);
-    char lastChar = previousWord[len - 1];
-    char firstChar = currentWord[0];
+    char lastChar =  tolower(previousWord[len - 1]);
+    char firstChar = tolower(currentWord[0]);
     return lastChar == firstChar;
 }
 /*
@@ -87,12 +98,16 @@ Expected Output:
 -Returns false otherwise.
 
 Test Cases:
+-Try enough tally remaining in the array >=0
+-Try not enough tally remaining
+-Try empty word 
+-Try case insensitive
 
 */
 // Function to check if a spell has run out of uses
 bool runOut(char currentWord[], int Tally[]) {
     size_t len = strlen(currentWord);
-    char lastLetter = currentWord[len - 1];
+    char lastLetter = tolower(currentWord[len - 1]);
     int Index = lastLetter - 97;
     if (Tally[Index] <= 0)
         return false;
@@ -134,6 +149,7 @@ int main() {
         int value = firstLetter - 97;
         Tally[value]=Tally[value]+1;
     }
+
     // Step 2
     char player1[100];
     printf("Player 1 please enter your first name: ");
