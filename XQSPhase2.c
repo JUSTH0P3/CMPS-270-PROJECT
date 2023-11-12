@@ -49,6 +49,7 @@ bool runOut(char currentWord[], int Tally[])
     else
         return true;
 }
+
 // Return a word that will finish the game.
 char *finishGame(char *spells[], int spellsSize, char *usedWords[], char userWord[], bool BotTurn, int Tally[])
 {
@@ -89,6 +90,7 @@ char *finishGame(char *spells[], int spellsSize, char *usedWords[], char userWor
     }
     return NULL;
 }
+
 // Check if the goodAvailableWord is also the in the badAvailableWordArray
 bool wordAsess(char *badAivalableBotWords[], char goodAvailableWord[], int size)
 {
@@ -99,6 +101,7 @@ bool wordAsess(char *badAivalableBotWords[], char goodAvailableWord[], int size)
     }
     return false;
 }
+
 char *botMove(char *spells[], int spellsSize, char *usedWords[], char userWord[], int Tally[])
 {
     char *finishingWord = finishGame(spells, spellsSize, usedWords, userWord, false, Tally);
